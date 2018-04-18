@@ -87,7 +87,7 @@
                     "time": "01:00"
                 },
                 "timeZoneId": "Eastern Standard Time",
-                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachineName'))]",
+                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]",
                 "notificationSettings": {
                     "status": "Disabled",
                     "timeInMinutes": "30"
