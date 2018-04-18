@@ -17,7 +17,7 @@
     },
     "variables": {
         "virtualMachineName": "[concat('workshop-vm-', uniqueString(resourceGroup().id, deployment().name))]",
-        "vnetId": "[resourceId('workshop','Microsoft.Network/virtualNetworks', 'workshop-vnet')]",
+        "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', 'workshop-vnet')]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', 'default')]",
         "networkInterfaceName": "[concat('workshop-vm-nic-', uniqueString(resourceGroup().id, deployment().name))]",
         "networkSecurityGroupName": "[concat('workshop-vm-nsg-', uniqueString(resourceGroup().id, deployment().name))]",
@@ -133,13 +133,13 @@
                             },
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIpAddress": {
-                                "id": "[resourceId('workshop','Microsoft.Network/publicIpAddresses', variables('publicIpAddressName'))]"
+                                "id": "[resourceId(resourceGroup().name,'Microsoft.Network/publicIpAddresses', variables('publicIpAddressName'))]"
                             }
                         }
                     }
                 ],
                 "networkSecurityGroup": {
-                    "id": "[resourceId('workshop', 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+                    "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
                 }
             }
         },
