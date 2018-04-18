@@ -2,6 +2,12 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "virtualMachineName": {
+            "type": "string",
+            "metadata": {
+                "description": "Windows computer name cannot be more than 15 characters long, be entirely numeric, or contain the following characters: ` ~ ! @ # $ % ^ & * ( ) = + _ [ ] { } \\ | ; : . ' \" , < > / ?."
+            }
+        },
         "adminUsername": {
             "type": "string",
             "metadata": {
@@ -16,7 +22,6 @@
         }
     },
     "variables": {
-        "virtualMachineName": "[concat('workshop-vm-', uniqueString(resourceGroup().id, deployment().name))]",
         "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', 'workshop-vnet')]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', 'default')]",
         "networkInterfaceName": "[concat('workshop-vm-nic-', uniqueString(resourceGroup().id, deployment().name))]",
@@ -27,7 +32,7 @@
     },
     "resources": [
         {
-            "name": "[variables('virtualMachineName')]",
+            "name": "[parameters('virtualMachineName')]",
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2017-03-30",
             "location": "[resourceGroup().location]",
@@ -36,7 +41,7 @@
             ],
             "properties": {
                 "osProfile": {
-                    "computerName": "[variables('virtualMachineName')]",
+                    "computerName": "[parameters('virtualMachineName')]",
                     "adminUsername": "[parameters('adminUsername')]",
                     "adminPassword": "[parameters('adminPassword')]",
                     "windowsConfiguration": {
@@ -71,7 +76,7 @@
             }
         },
         {
-            "name": "[concat('shutdown-computevm-', variables('virtualMachineName'))]",
+            "name": "[concat('shutdown-computevm-', parameters('virtualMachineName'))]",
             "type": "Microsoft.DevTestLab/schedules",
             "apiVersion": "2017-04-26-preview",
             "location": "[resourceGroup().location]",
@@ -89,7 +94,7 @@
                 }
             },
             "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/', variables('virtualMachineName'))]"
+                "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineName'))]"
             ]
         },
         {
