@@ -49,7 +49,7 @@
                     }
                 },
                 "hardwareProfile": {
-                    "vmSize": "Standard_DS2_v2"
+                    "vmSize": "Standard_D2s_v3"
                 },
                 "storageProfile": {
                     "imageReference": {
@@ -61,7 +61,7 @@
                     "osDisk": {
                         "createOption": "fromImage",
                         "managedDisk": {
-                            "storageAccountType": "Standard_LRS"
+                            "storageAccountType": "Premium_LRS"
                         }
                     },
                     "dataDisks": []
