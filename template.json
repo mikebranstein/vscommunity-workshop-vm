@@ -139,9 +139,9 @@
                         }
                     },
                     "imageReference": {
-                        "publisher": "microsoftvisualstudio",
-                        "offer": "visualstudio2019",
-                        "sku": "vs-2019-comm-win10-n",
+                        "publisher": "MicrosoftWindowsDesktop",
+                        "offer": "Windows-10",
+                        "sku": "RS3-ProN",
                         "version": "latest"
                     }
                 },
