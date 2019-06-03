@@ -37,8 +37,8 @@
     "resources": [
         {
           "type": "Microsoft.Compute/images",
-          "apiVersion": "2016-04-30-preview",
-          "name": "variables('imageName')",
+          "apiVersion": "2017-03-30",
+          "name": "[variables('imageName')]",
           "location": "[variables('location')]",
           "properties": {
             "storageProfile": {
@@ -46,7 +46,7 @@
                 "osType": "Windows",
                 "osState": "Generalized",
                 "blobUri": "[variables('osBlobUri')]",
-                "storageAccountType": "variables('osDiskType')"
+                "storageAccountType": "[variables('osDiskType')]"
               }
             }
           }
@@ -144,7 +144,7 @@
             "location": "[variables('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('networkInterfaceName'))]",
-                "[variables('imageName')]"
+                "[concat('Microsoft.Compute/images/', variables('imageName'))]"
             ],
             "properties": {
                 "hardwareProfile": {
@@ -152,7 +152,7 @@
                 },
                 "storageProfile": {
                     "osDisk": {
-                        "createOption": "fromImage",
+                        "createOption": "FromImage",
                         "managedDisk": {
                             "storageAccountType": "[variables('osDiskType')]"
                         }
