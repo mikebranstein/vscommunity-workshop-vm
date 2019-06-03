@@ -32,7 +32,7 @@
         "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', variables('subnetName'))]",
         "imageName": "myCustomImage",
-        "osBlobUri": "https://workshopvhds.blob.core.windows.net/vhds/terraform-win10-vs2019.vhd"
+        "osBlobUri": "https://workshopvhds.blob.core.windows.net/vhds/terraform-win10-vs2019-v2.vhd"
     },
     "resources": [
         {
