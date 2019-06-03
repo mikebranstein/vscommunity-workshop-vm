@@ -45,7 +45,7 @@
               "osDisk": {
                 "osType": "Windows",
                 "osState": "Generalized",
-                "blobUri": "variables('osBlobUri')",
+                "blobUri": "[variables('osBlobUri')]",
                 "storageAccountType": "variables('osDiskType')"
               }
             }
