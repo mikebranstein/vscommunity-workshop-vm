@@ -10,6 +10,9 @@
         },
         "adminPassword": {
             "value": null
+        },
+        "osBlobUri": {
+            "value": "https://{storage-account-name}.blob.core.windows.net/vhds/terraform-win10-vs2019-v2.vhd"
         }
     }
 }

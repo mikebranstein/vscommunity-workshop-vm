@@ -10,6 +10,9 @@
         },
         "adminPassword": {
             "type": "secureString"
+        },
+        "osBlobUri": {
+            "type": "string"
         }
     },
     "variables": {
@@ -31,8 +34,7 @@
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
         "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', variables('subnetName'))]",
-        "imageName": "myCustomImage",
-        "osBlobUri": "https://workshopvhds.blob.core.windows.net/vhds/terraform-win10-vs2019-v2.vhd"
+        "imageName": "myCustomImage"
     },
     "resources": [
         {
@@ -45,7 +47,7 @@
               "osDisk": {
                 "osType": "Windows",
                 "osState": "Generalized",
-                "blobUri": "[variables('osBlobUri')]",
+                "blobUri": "[parameters('osBlobUri')]",
                 "storageAccountType": "[variables('osDiskType')]"
               }
             }
